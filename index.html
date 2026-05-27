@@ -1,65 +1,393 @@
 <!DOCTYPE html>
-<html>
+<html lang="th">
 <head>
-  <title>My Website</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>Kollective Website</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
-    body{
+
+    *{
       margin:0;
-      font-family:Arial;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    body{
+      font-family:'Prompt',sans-serif;
       background:#0f172a;
       color:white;
+      overflow-x:hidden;
+    }
+
+    a{
+      text-decoration:none;
+      color:white;
+    }
+
+    /* NAVBAR */
+
+    nav{
+      width:100%;
+      padding:20px 8%;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      position:fixed;
+      top:0;
+      z-index:1000;
+      backdrop-filter: blur(12px);
+      background:rgba(15,23,42,0.6);
+    }
+
+    .logo{
+      font-size:28px;
+      font-weight:700;
+      color:#3b82f6;
+    }
+
+    .menu{
+      display:flex;
+      gap:30px;
+    }
+
+    .menu a{
+      color:#e2e8f0;
+      transition:0.3s;
+    }
+
+    .menu a:hover{
+      color:#3b82f6;
+    }
+
+    /* HERO */
+
+    .hero{
+      min-height:100vh;
       display:flex;
       justify-content:center;
       align-items:center;
-      height:100vh;
-      text-align:center;
+      padding:120px 8%;
+      position:relative;
     }
 
-    .box{
-      max-width:600px;
+    .hero-content{
+      max-width:700px;
+      z-index:2;
     }
 
-    h1{
-      font-size:60px;
-      margin-bottom:10px;
+    .hero h1{
+      font-size:70px;
+      line-height:1.1;
+      margin-bottom:20px;
     }
 
-    p{
+    .hero h1 span{
+      color:#3b82f6;
+    }
+
+    .hero p{
       font-size:20px;
       color:#cbd5e1;
+      line-height:1.8;
+      margin-bottom:30px;
     }
 
-    button{
-      margin-top:20px;
-      padding:15px 30px;
+    .btn-group{
+      display:flex;
+      gap:20px;
+      flex-wrap:wrap;
+    }
+
+    .btn{
+      padding:15px 28px;
+      border-radius:12px;
+      font-size:18px;
+      font-weight:600;
+      transition:0.3s;
+      cursor:pointer;
       border:none;
-      border-radius:10px;
+    }
+
+    .btn-primary{
       background:#3b82f6;
       color:white;
-      font-size:18px;
-      cursor:pointer;
     }
 
-    button:hover{
+    .btn-primary:hover{
       background:#2563eb;
+      transform:translateY(-3px);
     }
+
+    .btn-secondary{
+      background:transparent;
+      border:1px solid #3b82f6;
+      color:#3b82f6;
+    }
+
+    .btn-secondary:hover{
+      background:#3b82f6;
+      color:white;
+    }
+
+    /* GLOW */
+
+    .glow{
+      position:absolute;
+      width:500px;
+      height:500px;
+      background:#2563eb;
+      filter:blur(140px);
+      opacity:0.2;
+      border-radius:50%;
+      top:-100px;
+      right:-100px;
+    }
+
+    /* SERVICES */
+
+    .section{
+      padding:100px 8%;
+    }
+
+    .section-title{
+      text-align:center;
+      margin-bottom:60px;
+    }
+
+    .section-title h2{
+      font-size:48px;
+      margin-bottom:15px;
+    }
+
+    .section-title p{
+      color:#94a3b8;
+      font-size:18px;
+    }
+
+    .cards{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:30px;
+    }
+
+    .card{
+      background:#111827;
+      padding:35px;
+      border-radius:24px;
+      transition:0.3s;
+      border:1px solid rgba(255,255,255,0.05);
+    }
+
+    .card:hover{
+      transform:translateY(-8px);
+      border-color:#3b82f6;
+    }
+
+    .card-icon{
+      font-size:45px;
+      margin-bottom:20px;
+    }
+
+    .card h3{
+      margin-bottom:15px;
+      font-size:24px;
+    }
+
+    .card p{
+      color:#cbd5e1;
+      line-height:1.7;
+    }
+
+    /* CTA */
+
+    .cta{
+      text-align:center;
+      background:linear-gradient(135deg,#1e3a8a,#2563eb);
+      margin:100px 8%;
+      padding:80px 30px;
+      border-radius:32px;
+    }
+
+    .cta h2{
+      font-size:50px;
+      margin-bottom:20px;
+    }
+
+    .cta p{
+      font-size:20px;
+      color:#dbeafe;
+      margin-bottom:30px;
+    }
+
+    /* FOOTER */
+
+    footer{
+      padding:40px 8%;
+      border-top:1px solid rgba(255,255,255,0.08);
+      text-align:center;
+      color:#94a3b8;
+    }
+
+    /* RESPONSIVE */
+
+    @media(max-width:768px){
+
+      .hero h1{
+        font-size:48px;
+      }
+
+      .hero p{
+        font-size:18px;
+      }
+
+      .menu{
+        display:none;
+      }
+
+      .section-title h2{
+        font-size:36px;
+      }
+
+      .cta h2{
+        font-size:36px;
+      }
+
+    }
+
   </style>
 </head>
 
 <body>
 
-<div class="box">
-  <h1>🚀 My GitHub Website</h1>
+  <!-- NAVBAR -->
 
-  <p>
-    Deploy สำเร็จแล้วบน GitHub Pages
-  </p>
+  <nav>
 
-  <button onclick="alert('Hello World')">
-    Click Me
-  </button>
-</div>
+    <div class="logo">
+      Kollective
+    </div>
+
+    <div class="menu">
+      <a href="#">Home</a>
+      <a href="#">Services</a>
+      <a href="#">Projects</a>
+      <a href="#">Contact</a>
+    </div>
+
+  </nav>
+
+  <!-- HERO -->
+
+  <section class="hero">
+
+    <div class="glow"></div>
+
+    <div class="hero-content">
+
+      <h1>
+        Build Your <span>Future Website</span> With Modern Design
+      </h1>
+
+      <p>
+        เว็บไซต์สมัยใหม่สำหรับธุรกิจ ครีเอเตอร์ และทีมงานที่ต้องการความโดดเด่น 
+        เร็ว สวย และพร้อมใช้งานบนทุกอุปกรณ์
+      </p>
+
+      <div class="btn-group">
+
+        <button class="btn btn-primary">
+          Get Started
+        </button>
+
+        <button class="btn btn-secondary">
+          Learn More
+        </button>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- SERVICES -->
+
+  <section class="section">
+
+    <div class="section-title">
+      <h2>Our Services</h2>
+      <p>
+        บริการออกแบบและพัฒนาเว็บไซต์แบบครบวงจร
+      </p>
+    </div>
+
+    <div class="cards">
+
+      <div class="card">
+        <div class="card-icon">🚀</div>
+
+        <h3>Fast Website</h3>
+
+        <p>
+          เว็บไซต์โหลดเร็ว รองรับ SEO และเหมาะกับการใช้งานจริง
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">🎨</div>
+
+        <h3>Modern Design</h3>
+
+        <p>
+          ดีไซน์ทันสมัย Responsive รองรับมือถือและแท็บเล็ต
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">⚡</div>
+
+        <h3>Easy Deployment</h3>
+
+        <p>
+          Deploy ขึ้น GitHub Pages ได้ฟรีและดูแลง่าย
+        </p>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- CTA -->
+
+  <section class="cta">
+
+    <h2>
+      Ready To Launch Your Website?
+    </h2>
+
+    <p>
+      เริ่มต้นสร้างเว็บไซต์ของคุณวันนี้
+    </p>
+
+    <button class="btn btn-primary">
+      Contact Us
+    </button>
+
+  </section>
+
+  <!-- FOOTER -->
+
+  <footer>
+
+    © 2026 Kollective. All Rights Reserved.
+
+  </footer>
 
 </body>
 </html>
